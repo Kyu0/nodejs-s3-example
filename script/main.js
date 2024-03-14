@@ -1,7 +1,6 @@
-console.log('hello');
-
 const uploadForm = document.getElementById('upload-form');
-console.log(uploadForm);
+const preview = document.getElementById('preview');
+
 uploadForm.addEventListener('submit', event => {
     event.preventDefault();
     
@@ -13,6 +12,9 @@ uploadForm.addEventListener('submit', event => {
 
     fetch(request.url, { method: request.method, body })
     .then(res => {
-        console.log(res);
+        return res.json();
+    })
+    .then(json => {
+        preview.setAttribute('src', json.path);
     });
 })

@@ -9,6 +9,7 @@ const APP = express();
 const PORT = 5000;
 
 APP.use('/script', express.static(__dirname + '/script'));
+APP.use('/upload', express.static(__dirname + '/upload'));
 APP.use(express.json());
 APP.use(fileupload());
 APP.use(express.urlencoded({ extended: true }));
@@ -28,7 +29,7 @@ APP.post('/upload', (req, res) => {
             return res.status(500).send(error);
         }
 
-        res.json({ success: true });
+        res.json({ success: true, path: `/upload/${file.name}` });
     });
 });
 
