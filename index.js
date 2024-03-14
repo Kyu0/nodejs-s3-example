@@ -21,7 +21,15 @@ APP.get('/', (req, res) => {
 });
 
 APP.post('/upload', (req, res) => {
-    console.log(req.files);
+    let file = req.files.upload;
+
+    file.mv(`${__dirname}/upload/${file.name}`, (error) => {
+        if (error) {
+            return res.status(500).send(error);
+        }
+
+        res.json({ success: true });
+    });
 });
 
 APP.listen(PORT, () => {
