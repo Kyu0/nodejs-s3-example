@@ -1,7 +1,7 @@
 Velog 게시글 작성을 위한 예제 코드 레포지토리입니다.
 
 주제 : AWS S3 for Node.js (javascript v3)
-게시글 : https://velog.io/@kyu0/AWS-S3-%EB%8F%84%EC%9E%85-feat.-Javascript-v3-%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98
+[게시글](https://velog.io/@kyu0/AWS-S3-%EB%8F%84%EC%9E%85-feat.-Javascript-v3-%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98)
 
 실행 방법
 - 프로젝트 루트 디렉토리에서 `npm run dev` 입력
