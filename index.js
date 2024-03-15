@@ -9,11 +9,22 @@ const __dirname = path.resolve();
 const APP = express();
 const PORT = 5000;
 
+/**
+ * 각자의 환경에 맞는 값을 S3Information 변수에 입력해주세요
+ * !! 민감한 정보는 (예: secretAccessKey) 깃허브 원격 저장소에 노출되지 않도록 주의해주세요 !
+ */
+const S3Information = {
+    region: '',
+    bucketname: '',
+    accessKeyId: '',
+    secretAccessKey: '',
+};
+
 const S3 = new S3Client({
-    region: 'ap-northeast-2',
+    region: S3Information.region,
     credentials: {
-        accessKeyId: '',
-        secretAccessKey: ''
+        accessKeyId: S3Information.accessKeyId,
+        secretAccessKey: S3Information.secretAccessKey
     }
 });
 
@@ -34,7 +45,7 @@ APP.post('/upload', async (req, res) => {
     let file = req.files.upload;
 
     const command = new PutObjectCommand({
-        Bucket: 'kyu0-test',
+        Bucket: S3Information.bucketname,
         Key: 'public/image/sample.jpg', // 경로+파일명
         Body: file.data
     });
@@ -51,9 +62,7 @@ APP.post('/upload', async (req, res) => {
 });
 
 function getSavedPath(filePath) {
-    const bucketname = 'kyu0-test';
-    const region = 'ap-northeast-2';
-    return `https://${bucketname}.s3.${region}.amazonaws.com/${filePath}`;
+    return `https://${S3Information.bucketname}.s3.${S3Information.region}.amazonaws.com/${filePath}`;
 }
 
 APP.listen(PORT, () => {
